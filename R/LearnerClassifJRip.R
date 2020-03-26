@@ -29,13 +29,9 @@ LearnerClassifJRip <- R6Class("LearnerClassifJRip",
           ParamDbl$new(id = "N", default = 2, lower = 0, tags = c("train", "Weka_control")),
           ParamInt$new(id = "O", default = 2L, lower = 1L, tags = c("train", "Weka_control")),
           ParamLgl$new(id = "D", default = FALSE, tags = c("train", "Weka_control")),
-          ParamInt$new(id = "S", default = as.integer(runif(1, min = -.Machine$integer.max,
-                                                 max = .Machine$integer.max)),
-                       tags = c("train", "Weka_control")),
+          ParamInt$new(id = "S", default = 1, tags = c("train", "Weka_control")),
           ParamLgl$new(id = "E", default = FALSE, tags = c("train", "Weka_control")),
           ParamLgl$new(id = "P", default = FALSE, tags = c("train", "Weka_control")),
-          # Doesn't work
-          #ParamLgl$new(id = "output-debug-info", default = FALSE, tags = c("train", "Weka_control")),
           ParamUty$new(id = "options", default = NULL, tags = c("train", "pars"))
         )
       )
