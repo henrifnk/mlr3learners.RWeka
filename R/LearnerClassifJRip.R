@@ -16,13 +16,13 @@
 #' \url{http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.50.8204}
 #'
 #' @export
-LearnerClassifJRip <- R6Class("LearnerClassifJRip",
+LearnerClassifJRip = R6Class("LearnerClassifJRip",
   inherit = LearnerClassif,
   public = list(
     #' @description
     #' Creates a new instance of this [R6][R6::R6Class] class.
     initialize = function() {
-      ps <- ParamSet$new(
+      ps = ParamSet$new(
         params = list(
           ParamUty$new(id = "subset", tags = c("train", "pars")),
           ParamUty$new(id = "na.action", tags = c("train", "pars")),
@@ -43,7 +43,7 @@ LearnerClassifJRip <- R6Class("LearnerClassifJRip",
         feature_types = c("numeric", "factor", "ordered"),
         predict_types = c("response", "prob"),
         param_set = ps,
-        properties = c("twoclass", "multiclass", "missings"),
+        properties = c("twoclass", "multiclass"),
         man = "mlr3learners.RWeka::mlr_learners_classif.JRip"
       )
     }
@@ -51,28 +51,28 @@ LearnerClassifJRip <- R6Class("LearnerClassifJRip",
 
   private = list(
     .train = function(task) {
-      ctrl <- do.call(
+      ctrl = do.call(
         RWeka::Weka_control,
         self$param_set$get_values(tags = "Weka_control")
       )
 
-      pars <- self$param_set$get_values(tags = "pars")
-      f <- task$formula()
-      data <- task$data()
+      pars = self$param_set$get_values(tags = "pars")
+      f = task$formula()
+      data = task$data()
       invoke(RWeka::JRip, formula = f, data = data, control = ctrl, .args = pars)
     },
 
     .predict = function(task) {
-      response <- NULL
-      prob <- NULL
+      response = NULL
+      prob = NULL
       newdata <- task$data(cols = task$feature_names)
 
       if (self$predict_type == "response") {
-        response <- invoke(predict, self$model,
+        response = invoke(predict, self$model,
           newdata = newdata, type = "class"
         )
       } else {
-        prob <- invoke(predict, self$model,
+        prob = invoke(predict, self$model,
           newdata = newdata, type = "prob"
         )
       }
