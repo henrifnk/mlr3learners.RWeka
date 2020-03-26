@@ -1,11 +1,11 @@
-Package: mlr3learnerstemplate
+Package: mlr3learners.RWeka
 Title: Template for Adding New Learners to 'mlr3'
 Version: 0.1.0
 Authors@R:
-    person(given = "given.name",
-           family = "family.name",
+    person(given = "Henri",
+           family = "Funk",
            role = "cre",
-           email = "email@email.com")
+           email = "henrifnk@gmail.com")
 Description: Template for adding new learners to 'mlr3'.
 License: LGPL-3
 Depends:
@@ -15,7 +15,8 @@ Imports:
     mlr3 (>= 0.1.7),
     mlr3misc,
     paradox,
-    R6
+    R6,
+    RWeka
 Suggests:
     checkmate,
     rmarkdown,
