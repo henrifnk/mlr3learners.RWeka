@@ -1,12 +1,12 @@
 Package: mlr3learners.RWeka
-Title: Template for Adding New Learners to 'mlr3'
+Title: JRip Learner for 'mlr3'
 Version: 0.1.0
 Authors@R:
     person(given = "Henri",
            family = "Funk",
            role = "cre",
            email = "henrifnk@gmail.com")
-Description: Template for adding new learners to 'mlr3'.
+Description: JRip Learner for 'mlr3'.
 License: LGPL-3
 Depends:
     R (>= 3.1.0)
