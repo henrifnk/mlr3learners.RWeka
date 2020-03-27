@@ -7,6 +7,15 @@
 \description{
 A \link[mlr3:LearnerClassif]{mlr3::LearnerClassif} implementing classification JRip from package \CRANpkg{RWeka}.
 Calls \code{\link[RWeka:JRip]{RWeka::JRip()}}.
+
+I changed ids of the following control-agruments for this learner,
+since their ids contain irregular pattern:
+\itemize{
+\item mlr3learner: output_debug_info RWeka: output-debug-info
+\item mlr3learner: do_not_check_capabilities RWeka: do-not-check-capabilities
+\item mlr3learner: num_decimal_places RWeka: num-decimal-places
+\item mlr3learner: batch_size RWeka: batch-size
+}
 }
 \section{Dictionary}{
 

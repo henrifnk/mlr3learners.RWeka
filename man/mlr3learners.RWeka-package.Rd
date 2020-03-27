@@ -4,9 +4,9 @@
 \name{mlr3learners.RWeka-package}
 \alias{mlr3learners.RWeka}
 \alias{mlr3learners.RWeka-package}
-\title{mlr3learners.RWeka: JRip Learner for 'mlr3'}
+\title{mlr3learners.RWeka: JRip Learner for mlr3}
 \description{
-JRip Learner for 'mlr3'.
+JRip Learner for mlr3.
 }
 \author{
 \strong{Maintainer}: Henri Funk \email{henrifnk@gmail.com}

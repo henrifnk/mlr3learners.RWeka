@@ -6,6 +6,13 @@
 #' A [mlr3::LearnerClassif] implementing classification JRip from package \CRANpkg{RWeka}.
 #' Calls [RWeka::JRip()].
 #'
+#' I changed ids of the following control-agruments for this learner,
+#' since their ids contain irregular pattern:
+#' * mlr3learner: output_debug_info RWeka: output-debug-info
+#' * mlr3learner: do_not_check_capabilities RWeka: do-not-check-capabilities
+#' * mlr3learner: num_decimal_places RWeka: num-decimal-places
+#' * mlr3learner: batch_size RWeka: batch-size
+#'
 #' @templateVar id classif.Jrip
 #' @template section_dictionary_learner
 #'
@@ -26,13 +33,17 @@ LearnerClassifJRip = R6Class("LearnerClassifJRip",
         params = list(
           ParamUty$new(id = "subset", tags = c("train", "pars")),
           ParamUty$new(id = "na.action", tags = c("train", "pars")),
-          ParamInt$new(id = "F", default = 3L, lower = 2L, tags = c("train", "Weka_control")),
-          ParamDbl$new(id = "N", default = 2, lower = 0, tags = c("train", "Weka_control")),
-          ParamInt$new(id = "O", default = 2L, lower = 1L, tags = c("train", "Weka_control")),
-          ParamLgl$new(id = "D", default = FALSE, tags = c("train", "Weka_control")),
-          ParamInt$new(id = "S", default = 1, tags = c("train", "Weka_control")),
-          ParamLgl$new(id = "E", default = FALSE, tags = c("train", "Weka_control")),
-          ParamLgl$new(id = "P", default = FALSE, tags = c("train", "Weka_control")),
+          ParamInt$new(id = "F", default = 3L, lower = 2L, tags = c("train", "control")),
+          ParamDbl$new(id = "N", default = 2, lower = 0, tags = c("train", "control")),
+          ParamInt$new(id = "O", default = 2L, lower = 1L, tags = c("train", "control")),
+          ParamLgl$new(id = "D", default = FALSE, tags = c("train", "control")),
+          ParamInt$new(id = "S", default = 1, tags = c("train", "control")),
+          ParamLgl$new(id = "E", default = FALSE, tags = c("train", "control")),
+          ParamLgl$new(id = "P", default = FALSE, tags = c("train", "control")),
+          ParamLgl$new(id = "output_debug_info", default = FALSE, tags = c("train", "control")),
+          ParamLgl$new(id = "do_not_check_capabilities", default = FALSE, tags = c("train", "control")),
+          ParamInt$new(id = "num_decimal_places", default = 100L,  lower = 1L, tags = c("train", "control")),
+          ParamInt$new(id = "batch_size", default = 100L,  lower = 1L, tags = c("train", "control")),
           ParamUty$new(id = "options", default = NULL, tags = c("train", "pars"))
         )
       )
@@ -51,10 +62,12 @@ LearnerClassifJRip = R6Class("LearnerClassifJRip",
 
   private = list(
     .train = function(task) {
-      ctrl = do.call(
-        RWeka::Weka_control,
-        self$param_set$get_values(tags = "Weka_control")
-      )
+      
+      ctrl = self$param_set$get_values(tags = "control")
+      if (length(ctrl) > 1L) {
+        names(ctrl) <- paste0("-", gsub("_", replacement = "-", x = names(ctrl)))
+        ctrl = as.vector(rbind(names(ctrl), unlist(ctrl)))
+      }
 
       pars = self$param_set$get_values(tags = "pars")
       f = task$formula()
