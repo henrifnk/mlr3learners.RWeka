@@ -64,9 +64,9 @@ LearnerClassifJRip = R6Class("LearnerClassifJRip",
     .train = function(task) {
       
       ctrl = self$param_set$get_values(tags = "control")
-      if (length(ctrl) > 1L) {
-        names(ctrl) <- paste0("-", gsub("_", replacement = "-", x = names(ctrl)))
-        ctrl = as.vector(rbind(names(ctrl), unlist(ctrl)))
+      if (length(ctrl) > 0L) {
+        names(ctrl) <- gsub("_", replacement = "-", x = names(ctrl))
+        ctrl = do.call(RWeka::Weka_control, ctrl)
       }
 
       pars = self$param_set$get_values(tags = "pars")
