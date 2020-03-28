@@ -6,7 +6,7 @@
 #' A [mlr3::LearnerClassif] implementing classification JRip from package \CRANpkg{RWeka}.
 #' Calls [RWeka::JRip()].
 #'
-#' I changed ids of the following control-agruments for this learner,
+#' This Learner contains changed ids of the following control-agruments for,
 #' since their ids contain irregular pattern:
 #' * mlr3learner: output_debug_info RWeka: output-debug-info
 #' * mlr3learner: do_not_check_capabilities RWeka: do-not-check-capabilities
