@@ -78,7 +78,7 @@ LearnerClassifJRip = R6Class("LearnerClassifJRip",
     .predict = function(task) {
       response = NULL
       prob = NULL
-      newdata <- task$data(cols = task$feature_names)
+      newdata = task$data(cols = task$feature_names)
 
       if (self$predict_type == "response") {
         response = invoke(predict, self$model,
