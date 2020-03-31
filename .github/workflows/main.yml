@@ -130,8 +130,8 @@ jobs:
       - name: "[macOS] rJava"
         if: runner.os == 'macOS'
         run: |	     
-        R CMD javareconf	      
-        Rscript -e "install.packages('rJava', type = 'source')"
+          R CMD javareconf	      
+          Rscript -e "install.packages('rJava', type = 'source')"
 
       - name: "[Stage] Install"
         if: matrix.config.os != 'macOS-latest' || matrix.config.r != 'devel'
