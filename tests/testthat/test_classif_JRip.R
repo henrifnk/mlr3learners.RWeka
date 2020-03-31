@@ -3,8 +3,6 @@ context("classif.JRip")
 skip_on_os("windows")
 skip_on_cran()
 
-requirePackagesOrSkip("RWeka", default.method = "load")
-
 test_that("autotest", {
   learner = LearnerClassifJRip$new()
   expect_learner(learner)
