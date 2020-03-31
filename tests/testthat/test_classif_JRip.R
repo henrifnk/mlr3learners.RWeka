@@ -1,7 +1,6 @@
 context("classif.JRip")
 
 skip_on_os("windows")
-skip_on_cran()
 
 test_that("autotest", {
   learner = LearnerClassifJRip$new()
