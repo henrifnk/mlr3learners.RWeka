@@ -2,7 +2,7 @@ library(mlr3learners.rweka)
 
 test_that("classif.JRip", {
   learner = lrn("classif.JRip")
-  fun = RWeka::JRi
+  fun = RWeka::JRip
     exclude = c(
       # Examples how to exclude certain parameters. Always comment why a parameter
       # was excluded!
