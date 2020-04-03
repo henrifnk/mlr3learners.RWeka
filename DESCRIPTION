@@ -15,12 +15,12 @@ Imports:
     mlr3 (>= 0.1.7),
     mlr3misc,
     paradox,
-    R6
+    R6,
+    RWeka
 Suggests:
     checkmate,
     rmarkdown,
-    testthat,
-    RWeka
+    testthat
 Encoding: UTF-8
 NeedsCompilation: no
 Roxygen: list(markdown = TRUE)
