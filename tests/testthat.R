@@ -1,4 +1,4 @@
 library(testthat)
-library(mlr3learners.RWeka)
+library(mlr3learners.rweka)
 
-test_check("mlr3learners.RWeka")
+test_check("mlr3learners.rweka")

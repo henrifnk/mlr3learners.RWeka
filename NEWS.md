@@ -1,4 +1,4 @@
-# mlr3learners.RWeka dev
+# mlr3learners.rweka dev
 
 - Internal changes only.
 

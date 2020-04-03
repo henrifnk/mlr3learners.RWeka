@@ -17,7 +17,7 @@
 #' @template section_dictionary_learner
 #'
 #' @references
-#' Cohen W (1995). 
+#' Cohen W (1995).
 #' Fast effective rule induction
 #' In: Proceedings of the 12th International Conference on Machine Learning, pages 115–123.
 #' \url{http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.50.8204}
@@ -42,8 +42,8 @@ LearnerClassifJRip = R6Class("LearnerClassifJRip",
           ParamLgl$new(id = "P", default = FALSE, tags = c("train", "control")),
           ParamLgl$new(id = "output_debug_info", default = FALSE, tags = c("train", "control")),
           ParamLgl$new(id = "do_not_check_capabilities", default = FALSE, tags = c("train", "control")),
-          ParamInt$new(id = "num_decimal_places", default = 100L,  lower = 1L, tags = c("train", "control")),
-          ParamInt$new(id = "batch_size", default = 100L,  lower = 1L, tags = c("train", "control")),
+          ParamInt$new(id = "num_decimal_places", default = 100L, lower = 1L, tags = c("train", "control")),
+          ParamInt$new(id = "batch_size", default = 100L, lower = 1L, tags = c("train", "control")),
           ParamUty$new(id = "options", default = NULL, tags = c("train", "pars"))
         )
       )
@@ -62,7 +62,6 @@ LearnerClassifJRip = R6Class("LearnerClassifJRip",
 
   private = list(
     .train = function(task) {
-      
       ctrl = self$param_set$get_values(tags = "control")
       if (length(ctrl) > 0L) {
         names(ctrl) <- gsub("_", replacement = "-", x = names(ctrl))

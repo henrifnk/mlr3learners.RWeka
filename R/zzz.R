@@ -25,7 +25,7 @@ register_mlr3 = function(libname, pkgname) {
   event = packageEvent("mlr3", "onLoad")
   hooks = getHook(event)
   pkgname = vapply(hooks, function(x) environment(x)$pkgname, NA_character_)
-  setHook(event, hooks[pkgname != "mlr3learners.RWeka"],
+  setHook(event, hooks[pkgname != "mlr3learners.rweka"],
     action = "replace")
 }
 # nocov end
