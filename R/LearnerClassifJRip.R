@@ -55,7 +55,7 @@ LearnerClassifJRip = R6Class("LearnerClassifJRip",
         predict_types = c("response", "prob"),
         param_set = ps,
         properties = c("twoclass", "multiclass"),
-        man = "mlr3learners.RWeka::mlr_learners_classif.JRip"
+        man = "mlr3learners.rweka::mlr_learners_classif.JRip"
       )
     }
   ),

@@ -1,4 +1,4 @@
-library(mlr3learners.RWeka)
+library(mlr3learners.rweka)
 
 test_that("classif.JRip", {
   learner = lrn("classif.JRip")
