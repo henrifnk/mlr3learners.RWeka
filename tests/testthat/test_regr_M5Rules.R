@@ -1,6 +1,6 @@
 context("regr.M5Rules")
 
-# skip_on_os("windows")
+skip_on_os("windows")
 
 test_that("autotest", {
   learner = LearnerRegrM5Rules$new()
