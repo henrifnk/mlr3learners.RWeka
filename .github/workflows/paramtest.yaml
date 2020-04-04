@@ -82,7 +82,7 @@ jobs:
           sudo apt install ccache libcurl4-openssl-dev
           mkdir -p ~/.R && echo -e 'CXX_STD = CXX14\n\nCC=ccache gcc -std=gnu99\nCXX=ccache g++\nCXX11=ccache g++ -std=gnu99\nCXX14=ccache g++ -std=gnu99\nC11=ccache g++\nC14=ccache g++\nFC=ccache gfortran\nF77=ccache gfortran' > $HOME/.R/Makevars
 
-      #  prepare Linux for rJava
+      #  prepare Linux for rJava install openjdk-8-jdk
       - name: "[Linux] Prepare"
         if: runner.os == 'Linux'
         run: |

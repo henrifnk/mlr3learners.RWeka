@@ -21,9 +21,9 @@ test_that("classif.JRip", {
 test_that("classif.JRip_control", {
   learner = lrn("classif.JRip")
   fun = RWeka::Weka_control # replace!
-  # exclude = c(
-  # 
-  # )
+  exclude = c(
+   
+   )
   
   ParamTest = run_paramtest(learner, fun, exclude)
   expect_true(ParamTest, info = paste0("\nMissing parameters:\n",
