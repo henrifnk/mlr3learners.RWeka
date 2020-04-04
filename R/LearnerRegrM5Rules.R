@@ -19,7 +19,8 @@
 #' @references
 #' Hall M, Et al. (1999)
 #' Generating rule sets from model trees
-#' In: Proceedings of the Twelfth Australian Joint Conference on Artificial Intelligence, pages 1- 12.
+#' In: Proceedings of the Twelfth Australian Joint Conference on
+#'     Artificial Intelligence, pages 1- 12.
 #' \url{http://citeseer.ist.psu.edu/holmes99generating.html}
 #'
 #' @export
@@ -38,8 +39,10 @@ LearnerRegrM5Rules = R6Class("LearnerRegrM5Rules",
           ParamLgl$new(id = "R", default = FALSE, tags = c("train", "control")),
           ParamInt$new(id = "M", default = 4L, tags = c("train", "control")),
           ParamLgl$new(id = "output_debug_info", default = FALSE, tags = c("train", "control")),
-          ParamLgl$new(id = "do_not_check_capabilities", default = FALSE, tags = c("train", "control")),
-          ParamInt$new(id = "num_decimal_places", default = 2L, lower = 1L, tags = c("train", "control")),
+          ParamLgl$new(id = "do_not_check_capabilities", default = FALSE,
+                       tags = c("train", "control")),
+          ParamInt$new(id = "num_decimal_places", default = 2L, lower = 1L,
+                       tags = c("train", "control")),
           ParamInt$new(id = "batch_size", default = 100L, lower = 1L, tags = c("train", "control")),
           ParamUty$new(id = "options", default = NULL, tags = c("train", "pars"))
         )

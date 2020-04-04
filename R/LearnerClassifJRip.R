@@ -41,8 +41,10 @@ LearnerClassifJRip = R6Class("LearnerClassifJRip",
           ParamLgl$new(id = "E", default = FALSE, tags = c("train", "control")),
           ParamLgl$new(id = "P", default = FALSE, tags = c("train", "control")),
           ParamLgl$new(id = "output_debug_info", default = FALSE, tags = c("train", "control")),
-          ParamLgl$new(id = "do_not_check_capabilities", default = FALSE, tags = c("train", "control")),
-          ParamInt$new(id = "num_decimal_places", default = 2L, lower = 1L, tags = c("train", "control")),
+          ParamLgl$new(id = "do_not_check_capabilities", default = FALSE,
+                       tags = c("train", "control")),
+          ParamInt$new(id = "num_decimal_places", default = 2L, lower = 1L,
+                       tags = c("train", "control")),
           ParamInt$new(id = "batch_size", default = 100L, lower = 1L, tags = c("train", "control")),
           ParamUty$new(id = "options", default = NULL, tags = c("train", "pars"))
         )
