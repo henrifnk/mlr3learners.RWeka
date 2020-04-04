@@ -1,8 +1,8 @@
 library(mlr3learners.rweka)
 
-test_that("classif.JRip", {
-  learner = lrn("classif.JRip")
-  fun = RWeka::JRip
+test_that("classif.J48", {
+  learner = lrn("classif.J48")
+  fun = RWeka::J48
     exclude = c(
       # Examples how to exclude certain parameters. Always comment why a parameter
       # was excluded!
@@ -19,7 +19,7 @@ test_that("classif.JRip", {
 
 # example for checking a "control" function of a learner
 test_that("classif.Weka_control", {
-  learner = lrn("classif.JRip")
+  learner = lrn("classif.J48")
   fun = RWeka::Weka_control # replace!
   exclude = c(
    

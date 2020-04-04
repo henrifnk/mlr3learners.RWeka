@@ -1,10 +1,10 @@
-#' @title Classification JRip Learner
+#' @title Classification J48 Learner
 #'
-#' @name mlr_learners_classif.JRip
+#' @name mlr_learners_classif.J48
 #'
 #' @description
-#' A [mlr3::LearnerClassif] implementing classification JRip from package \CRANpkg{RWeka}.
-#' Calls [RWeka::JRip()].
+#' A [mlr3::LearnerClassif] implementing classification J48 from package \CRANpkg{RWeka}.
+#' Calls [RWeka::J48()].
 #'
 #' This Learner contains changed ids of the following control-agruments for,
 #' since their ids contain irregular pattern:
@@ -13,17 +13,16 @@
 #' * mlr3learner: num_decimal_places RWeka: num-decimal-places
 #' * mlr3learner: batch_size RWeka: batch-size
 #'
-#' @templateVar id classif.Jrip
+#' @templateVar id classif.J48
 #' @template section_dictionary_learner
 #'
 #' @references
-#' Cohen W (1995).
-#' Fast effective rule induction
-#' In: Proceedings of the 12th International Conference on Machine Learning, pages 115–123.
-#' \url{http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.50.8204}
+#' Quinlan R (1993).
+#' C4.5: Programs for Machine Learning
+#' \url{http://www.rulequest.com/see5-unix.html}
 #'
 #' @export
-LearnerClassifJRip = R6Class("LearnerClassifJRip",
+LearnerClassifJ48 = R6Class("LearnerClassifJ48",
   inherit = LearnerClassif,
   public = list(
     #' @description
@@ -33,13 +32,20 @@ LearnerClassifJRip = R6Class("LearnerClassifJRip",
         params = list(
           ParamUty$new(id = "subset", tags = c("train", "pars")),
           ParamUty$new(id = "na.action", tags = c("train", "pars")),
-          ParamInt$new(id = "F", default = 3L, lower = 2L, tags = c("train", "control")),
-          ParamDbl$new(id = "N", default = 2, lower = 0, tags = c("train", "control")),
-          ParamInt$new(id = "O", default = 2L, lower = 1L, tags = c("train", "control")),
-          ParamLgl$new(id = "D", default = FALSE, tags = c("train", "control")),
-          ParamInt$new(id = "S", default = 1L, lower = 1L, tags = c("train", "control")),
-          ParamLgl$new(id = "E", default = FALSE, tags = c("train", "control")),
-          ParamLgl$new(id = "P", default = FALSE, tags = c("train", "control")),
+          ParamLgl$new(id = "U", default = FALSE, tags = c("train", "control")),
+          ParamLgl$new(id = "O", default = FALSE, tags = c("train", "control")),
+          ParamDbl$new(id = "C", default = 0.25, lower = .Machine$double.eps,
+            upper = 1 - .Machine$double.eps, tags = c("train", "control")),
+          ParamInt$new(id = "M", default = 2L, lower = 1L, tags = c("train", "control")),
+          ParamLgl$new(id = "R", default = FALSE, tags = c("train", "control")),
+          ParamInt$new(id = "N", default = 3L, lower = 2L, tags = c("train", "control")),
+          ParamLgl$new(id = "B", default = FALSE, tags = c("train", "control")),
+          ParamLgl$new(id = "S", default = FALSE, tags = c("train", "control")),
+          ParamLgl$new(id = "L", default = FALSE, tags = c("train", "control")),
+          ParamLgl$new(id = "A", default = FALSE, tags = c("train", "control")),
+          ParamLgl$new(id = "J", default = FALSE, tags = c("train", "control")),
+          ParamInt$new(id = "Q", default = 1L, lower = 1L, tags = c("train", "control")),
+          ParamLgl$new(id = "doNotMakeSplitPointActualValue", default = FALSE, tags = c("train", "control")),
           ParamLgl$new(id = "output_debug_info", default = FALSE, tags = c("train", "control")),
           ParamLgl$new(id = "do_not_check_capabilities", default = FALSE, tags = c("train", "control")),
           ParamInt$new(id = "num_decimal_places", default = 2L, lower = 1L, tags = c("train", "control")),
@@ -47,15 +53,20 @@ LearnerClassifJRip = R6Class("LearnerClassifJRip",
           ParamUty$new(id = "options", default = NULL, tags = c("train", "pars"))
         )
       )
+      ps$add_dep("C", "U", CondEqual$new(FALSE))
+      ps$add_dep("C", "R", CondEqual$new(FALSE))
+      ps$add_dep("R", "U", CondEqual$new(FALSE))
+      ps$add_dep("N", "U", CondEqual$new(FALSE))
+      ps$add_dep("N", "R", CondEqual$new(TRUE))
 
       super$initialize(
-        id = "classif.JRip",
+        id = "classif.J48",
         packages = "RWeka",
         feature_types = c("numeric", "factor", "ordered"),
         predict_types = c("response", "prob"),
         param_set = ps,
-        properties = c("twoclass", "multiclass"),
-        man = "mlr3learners.rweka::mlr_learners_classif.JRip"
+        properties = c("twoclass", "multiclass", "missings"),
+        man = "mlr3learners.rweka::mlr_learners_classif.J48"
       )
     }
   ),
@@ -71,7 +82,7 @@ LearnerClassifJRip = R6Class("LearnerClassifJRip",
       pars = self$param_set$get_values(tags = "pars")
       f = task$formula()
       data = task$data()
-      invoke(RWeka::JRip, formula = f, data = data, control = ctrl, .args = pars)
+      invoke(RWeka::J48, formula = f, data = data, control = ctrl, .args = pars)
     },
 
     .predict = function(task) {
