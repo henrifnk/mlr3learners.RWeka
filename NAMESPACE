@@ -2,6 +2,7 @@
 
 export(LearnerClassifJ48)
 export(LearnerClassifJRip)
+export(LearnerRegrM5Rules)
 import(data.table)
 import(mlr3misc)
 import(paradox)

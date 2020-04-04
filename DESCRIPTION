@@ -1,5 +1,5 @@
 Package: mlr3learners.rweka
-Title: JRip and J48 Learner for mlr3
+Title: M5Rules, JRip and J48 Learner for mlr3
 Version: 0.1.0.9000
 Authors@R:
     person(given = "Henri",
@@ -19,8 +19,8 @@ Imports:
 Suggests:
     checkmate,
     rmarkdown,
-    testthat,
-    RWeka
+    RWeka,
+    testthat
 Encoding: UTF-8
 NeedsCompilation: no
 Roxygen: list(markdown = TRUE)

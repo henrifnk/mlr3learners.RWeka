@@ -13,6 +13,7 @@ register_mlr3 = function(libname, pkgname) {
   # add the learner to the dictionary
   x$add("classif.JRip", LearnerClassifJRip)
   x$add("classif.J48", LearnerClassifJ48)
+  x$add("classif.J48", LearnerRegrM5Rules)
 }
 
 .onLoad = function(libname, pkgname) {

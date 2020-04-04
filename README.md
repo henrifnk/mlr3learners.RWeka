@@ -5,7 +5,7 @@
 [![StackOverflow](https://img.shields.io/badge/stackoverflow-mlr3-orange.svg)](https://stackoverflow.com/questions/tagged/mlr3)
 <!-- badges: end -->
 
-Adds `JRip` and `J48` from the {RWeka} package to {mlr3}.
+Adds `M5Rules`, `JRip` and `J48` from the {RWeka} package to {mlr3}.
 
 Install the latest release of the package via
 

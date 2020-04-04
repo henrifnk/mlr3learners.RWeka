@@ -4,7 +4,7 @@
 \name{mlr3learners.rweka-package}
 \alias{mlr3learners.rweka}
 \alias{mlr3learners.rweka-package}
-\title{mlr3learners.rweka: JRip and J48 Learner for mlr3}
+\title{mlr3learners.rweka: M5Rules, JRip and J48 Learner for mlr3}
 \description{
 JRip and J48 Learner for mlr3.
 }
