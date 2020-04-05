@@ -71,7 +71,7 @@ LearnerRegrM5Rules = R6Class("LearnerRegrM5Rules",
       pars = self$param_set$get_values(tags = "pars")
       f = task$formula()
       data = task$data()
-      invoke(RWeka::M5Rules, formula = f, data = data, control = ctrl, .args = pars)
+      mlr3misc::invoke(RWeka::M5Rules, formula = f, data = data, control = ctrl, .args = pars)
     },
 
     .predict = function(task) {
