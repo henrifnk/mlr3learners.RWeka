@@ -8,16 +8,27 @@ test_that("classif.JRip", {
       "data", # handled via mlr3
       "control" # handled to RWeka::Weka_Control
     )
-  ParamTest = run_paramtest(learner, fun, exclude)
-  expect_true(ParamTest, info = paste0("\nMissing parameters:\n",
-                                       paste0("- '", ParamTest$missing, "'", collapse = "\n")))
+    ParamTest = run_paramtest(learner, fun, exclude)
+    expect_true(ParamTest, info = paste0(
+      "
+Missing parameters:
+",
+      paste0("- '", ParamTest$missing, "'", collapse = "
+")))
 })
 
-test_that("classif.Weka_control", {
+test_that("Weka_control JRip", {
   learner = lrn("classif.JRip")
   fun = RWeka::Weka_control
-  exclude = NULL
+  exclude = c(
+    character(0L)
+  )
+  
   ParamTest = run_paramtest(learner, fun, exclude)
-  expect_true(ParamTest, info = paste0("\nMissing parameters:\n",
-                                       paste0("- '", ParamTest$missing, "'", collapse = "\n")))
+  expect_true(ParamTest, info = paste0(
+    "
+Missing parameters:
+",
+    paste0("- '", ParamTest$missing, "'", collapse = "
+")))
 })

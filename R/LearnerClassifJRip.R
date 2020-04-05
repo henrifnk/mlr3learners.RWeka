@@ -6,7 +6,7 @@
 #' A [mlr3::LearnerClassif] implementing classification JRip from package \CRANpkg{RWeka}.
 #' Calls [RWeka::JRip()].
 #'
-#' This Learner contains changed ids of the following control-agruments for,
+#' This learner contains changed ids of the following control agruments
 #' since their ids contain irregular pattern:
 #' * mlr3learner: output_debug_info RWeka: output-debug-info
 #' * mlr3learner: do_not_check_capabilities RWeka: do-not-check-capabilities
@@ -42,9 +42,9 @@ LearnerClassifJRip = R6Class("LearnerClassifJRip",
           ParamLgl$new(id = "P", default = FALSE, tags = c("train", "control")),
           ParamLgl$new(id = "output_debug_info", default = FALSE, tags = c("train", "control")),
           ParamLgl$new(id = "do_not_check_capabilities", default = FALSE,
-                       tags = c("train", "control")),
+            tags = c("train", "control")),
           ParamInt$new(id = "num_decimal_places", default = 2L, lower = 1L,
-                       tags = c("train", "control")),
+            tags = c("train", "control")),
           ParamInt$new(id = "batch_size", default = 100L, lower = 1L, tags = c("train", "control")),
           ParamUty$new(id = "options", default = NULL, tags = c("train", "pars"))
         )
@@ -66,14 +66,14 @@ LearnerClassifJRip = R6Class("LearnerClassifJRip",
     .train = function(task) {
       ctrl = self$param_set$get_values(tags = "control")
       if (length(ctrl) > 0L) {
-        names(ctrl) <- gsub("_", replacement = "-", x = names(ctrl))
-        ctrl = do.call(RWeka::Weka_control, ctrl)
+        names(ctrl) = gsub("_", replacement = "-", x = names(ctrl))
+        ctrl = mlr3misc::invoke(RWeka::Weka_control, ctrl)
       }
 
       pars = self$param_set$get_values(tags = "pars")
       f = task$formula()
       data = task$data()
-      invoke(RWeka::JRip, formula = f, data = data, control = ctrl, .args = pars)
+      mlr3misc::invoke(RWeka::JRip, formula = f, data = data, control = ctrl, .args = pars)
     },
 
     .predict = function(task) {
@@ -82,13 +82,9 @@ LearnerClassifJRip = R6Class("LearnerClassifJRip",
       newdata = task$data(cols = task$feature_names)
 
       if (self$predict_type == "response") {
-        response = invoke(predict, self$model,
-          newdata = newdata, type = "class"
-        )
+        response = mlr3misc::invoke(predict, self$model, newdata = newdata, type = "class")
       } else {
-        prob = invoke(predict, self$model,
-          newdata = newdata, type = "prob"
-        )
+        prob = mlr3misc::invoke(predict, self$model, newdata = newdata, type = "prob")
       }
       PredictionClassif$new(task = task, response = response, prob = prob)
     }

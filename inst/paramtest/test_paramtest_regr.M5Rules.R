@@ -8,16 +8,28 @@ test_that("regr.M5Rules", {
       "data", # handled via mlr3
       "control" # handled to RWeka::Weka_Control
     )
-  ParamTest = run_paramtest(learner, fun, exclude)
-  expect_true(ParamTest, info = paste0("\nMissing parameters:\n",
-                                       paste0("- '", ParamTest$missing, "'", collapse = "\n")))
+    
+    ParamTest = run_paramtest(learner, fun, exclude)
+    expect_true(ParamTest, info = paste0(
+      "
+Missing parameters:
+",
+      paste0("- '", ParamTest$missing, "'", collapse = "
+")))
 })
 
-test_that("regr.Weka_control", {
+test_that("Weka_control M5 Rules", {
   learner = lrn("regr.M5Rules")
   fun = RWeka::Weka_control
-  exclude = NULL
+  exclude = c(
+    character(0L)
+  )
+  
   ParamTest = run_paramtest(learner, fun, exclude)
-  expect_true(ParamTest, info = paste0("\nMissing parameters:\n",
-                                       paste0("- '", ParamTest$missing, "'", collapse = "\n")))
+  expect_true(ParamTest, info = paste0(
+    "
+Missing parameters:
+",
+    paste0("- '", ParamTest$missing, "'", collapse = "
+")))
 })
