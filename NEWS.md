@@ -1,5 +1,4 @@
-# mlr3learners.rweka dev
+# mlr3learners.rweka 0.1.0
 
-- Internal changes only.
-
+- Initial release
 
