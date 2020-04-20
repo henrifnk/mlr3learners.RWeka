@@ -11,9 +11,15 @@ register_mlr3 = function(libname, pkgname) {
   x = utils::getFromNamespace("mlr_learners", ns = "mlr3")
 
   # add the learner to the dictionary
+  x$add("classif.AdaBoostM1", LearnerClassifAdaBoostM1)
+  x$add("classif.IBk", LearnerClassifIBk)
+  x$add("regr.IBk", LearnerRegrIBk)
   x$add("classif.JRip", LearnerClassifJRip)
   x$add("classif.J48", LearnerClassifJ48)
+  x$add("classif.LMT", LearnerClassifLMT)
   x$add("regr.M5Rules", LearnerRegrM5Rules)
+  x$add("classif.OneR", LearnerClassifOneR)
+  x$add("classif.PART", LearnerClassifPART)
 }
 
 .onLoad = function(libname, pkgname) { # nolint

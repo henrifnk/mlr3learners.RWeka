@@ -1,10 +1,10 @@
-#' @title Classification J48 Learner
+#' @title Classification AdaBoostM1 Learner
 #'
-#' @name mlr_learners_classif.J48
+#' @name mlr_learners_classif.AdaBoostM1
 #'
 #' @description
-#' A [mlr3::LearnerClassif] implementing classification J48 from package \CRANpkg{RWeka}.
-#' Calls [RWeka::J48()].
+#' A [mlr3::LearnerClassif] implementing classification AdaBoostM1 from package \CRANpkg{RWeka}.
+# Calls [RWeka::AdaBoostM1()].
 #'
 #' @section Custom mlr3 defaults:
 #' - `output_debug_info`:  
@@ -21,16 +21,16 @@
 #' - Reason for change: This learner contains changed ids of the following control agruments
 #' since their ids contain irregular pattern
 #'   
-#' @templateVar id classif.J48
+#' @templateVar id classif.AdaBoostM1
 #' @template section_dictionary_learner
 #'
 #' @references
-#' Quinlan R (1993).
-#' C4.5: Programs for Machine Learning
-#' \url{http://www.rulequest.com/see5-unix.html}
+#'  Freund Y, Schapire, R (1993).
+#' Experiments with a New Boosting Algorithm
+#' \url{http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.51.6252&rep=rep1&type=pdf}
 #'
 #' @export
-LearnerClassifJ48 = R6Class("LearnerClassifJ48",
+LearnerClassifAdaBoostM1 = R6Class("LearnerClassifAdaBoostM1",
   inherit = LearnerClassif,
   public = list(
     #' @description
@@ -40,44 +40,28 @@ LearnerClassifJ48 = R6Class("LearnerClassifJ48",
         params = list(
           ParamUty$new(id = "subset", tags = c("train", "pars")),
           ParamUty$new(id = "na.action", tags = c("train", "pars")),
-          ParamLgl$new(id = "U", default = FALSE, tags = c("train", "control")),
-          ParamLgl$new(id = "O", default = FALSE, tags = c("train", "control")),
-          ParamDbl$new(id = "C", default = 0.25, lower = .Machine$double.eps,
-            upper = 1 - .Machine$double.eps, tags = c("train", "control")),
-          ParamInt$new(id = "M", default = 2L, lower = 1L, tags = c("train", "control")),
-          ParamLgl$new(id = "R", default = FALSE, tags = c("train", "control")),
-          ParamInt$new(id = "N", default = 3L, lower = 2L, tags = c("train", "control")),
-          ParamLgl$new(id = "B", default = FALSE, tags = c("train", "control")),
-          ParamLgl$new(id = "S", default = FALSE, tags = c("train", "control")),
-          ParamLgl$new(id = "L", default = FALSE, tags = c("train", "control")),
-          ParamLgl$new(id = "A", default = FALSE, tags = c("train", "control")),
-          ParamLgl$new(id = "J", default = FALSE, tags = c("train", "control")),
-          ParamInt$new(id = "Q", default = 1L, lower = 1L, tags = c("train", "control")),
-          ParamLgl$new(id = "doNotMakeSplitPointActualValue", default = FALSE,
-            tags = c("train", "control")),
+          ParamInt$new(id = "P", default = 100L, lower = 90L, upper = 100L, tags = c("train", "control")),
+          ParamLgl$new(id = "Q", default = FALSE, tags = c("train", "control")),
+          ParamInt$new(id = "S", default = 1L, lower = 1L, tags = c("train", "control")),
+          ParamInt$new(id = "I", default = 10L, lower = 1L, tags = c("train", "control")),
+          ParamUty$new(id = "W", default = "weka.classifiers.trees.DecisionStump", tags = c("train", "control")),
           ParamLgl$new(id = "output_debug_info", default = FALSE, tags = c("train", "control")),
-          ParamLgl$new(id = "do_not_check_capabilities", default = FALSE,
-            tags = c("train", "control")),
+          ParamLgl$new(id = "do_not_check_capabilities", default = FALSE, tags = c("train", "control")),
           ParamInt$new(id = "num_decimal_places", default = 2L, lower = 1L,
             tags = c("train", "control")),
           ParamInt$new(id = "batch_size", default = 100L, lower = 1L, tags = c("train", "control")),
           ParamUty$new(id = "options", default = NULL, tags = c("train", "pars"))
         )
       )
-      ps$add_dep("C", "U", CondEqual$new(FALSE))
-      ps$add_dep("C", "R", CondEqual$new(FALSE))
-      ps$add_dep("R", "U", CondEqual$new(FALSE))
-      ps$add_dep("N", "U", CondEqual$new(FALSE))
-      ps$add_dep("N", "R", CondEqual$new(TRUE))
-
+      
       super$initialize(
-        id = "classif.J48",
+        id = "classif.AdaBoostM1",
         packages = "RWeka",
         feature_types = c("numeric", "factor", "ordered"),
         predict_types = c("response", "prob"),
         param_set = ps,
-        properties = c("twoclass", "multiclass", "missings"),
-        man = "mlr3learners.rweka::mlr_learners_classif.J48"
+        properties = c("twoclass", "multiclass"),
+        man = "mlr3learners.rweka::mlr_learners_classif.AdaBoostM1"
       )
     }
   ),
@@ -93,7 +77,7 @@ LearnerClassifJ48 = R6Class("LearnerClassifJ48",
       pars = self$param_set$get_values(tags = "pars")
       f = task$formula()
       data = task$data()
-      mlr3misc::invoke(RWeka::J48, formula = f, data = data, control = ctrl, .args = pars)
+      mlr3misc::invoke(RWeka::AdaBoostM1, formula = f, data = data, control = ctrl, .args = pars)
     },
 
     .predict = function(task) {

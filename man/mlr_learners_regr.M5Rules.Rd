@@ -8,7 +8,7 @@
 A \link[mlr3:LearnerRegr]{mlr3::LearnerRegr} implementing classification JRip from package \CRANpkg{RWeka}.
 Calls \code{\link[RWeka:M5Rules]{RWeka::M5Rules()}}.
 
-This Learner contains changed ids of the following control-agruments for,
+This learner contains changed ids of the following control agruments
 since their ids contain irregular pattern:
 \itemize{
 \item mlr3learner: output_debug_info RWeka: output-debug-info
@@ -28,7 +28,8 @@ lrn("regr.M5Rules")
 \references{
 Hall M, Et al. (1999)
 Generating rule sets from model trees
-In: Proceedings of the Twelfth Australian Joint Conference on Artificial Intelligence, pages 1- 12.
+In: Proceedings of the Twelfth Australian Joint Conference on
+Artificial Intelligence, pages 1- 12.
 \url{http://citeseer.ist.psu.edu/holmes99generating.html}
 }
 \section{Super classes}{

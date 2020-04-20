@@ -1,12 +1,12 @@
 Package: mlr3learners.rweka
-Title: M5Rules, JRip and J48 Learner for mlr3
+Title: AdaBoostM1, IBk ,JRip, J48, LMT, M5Rules, OneR and PART Learner for mlr3
 Version: 0.1.0.9000
 Authors@R:
     person(given = "Henri",
            family = "Funk",
            role = "cre",
            email = "henrifnk@gmail.com")
-Description: JRip and J48 Learner for mlr3.
+Description: AdaBoostM1, IBk ,JRip, J48, LMT, M5Rules, OneR and PART Learner for mlr3.
 License: LGPL-3
 Depends:
     R (>= 3.1.0)

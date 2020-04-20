@@ -1,8 +1,8 @@
 library(mlr3learners.rweka)
 
-test_that("regr.M5Rules", {
-  learner = lrn("regr.M5Rules")
-  fun = RWeka::M5Rules
+test_that("regr.IBk", {
+  learner = lrn("regr.IBk")
+  fun = RWeka::IBk
   exclude = c(
     "formula", # handled via mlr3
     "data", # handled via mlr3
@@ -18,8 +18,8 @@ Missing parameters:
 ")))
 })
 
-test_that("Weka_control M5 Rules", {
-  learner = lrn("regr.M5Rules")
+test_that("Weka_control IBk", {
+  learner = lrn("regr.IBk")
   fun = RWeka::Weka_control
   exclude = c(
     character(0L)

@@ -1,10 +1,10 @@
-#' @title Classification J48 Learner
+#' @title Classification Logistic Model Trees Learner
 #'
-#' @name mlr_learners_classif.J48
+#' @name mlr_learners_classif.LMT
 #'
 #' @description
-#' A [mlr3::LearnerClassif] implementing classification J48 from package \CRANpkg{RWeka}.
-#' Calls [RWeka::J48()].
+#' A [mlr3::LearnerClassif] implementing classification LMT from package \CRANpkg{RWeka}.
+# Calls [RWeka::LMT()].
 #'
 #' @section Custom mlr3 defaults:
 #' - `output_debug_info`:  
@@ -21,16 +21,16 @@
 #' - Reason for change: This learner contains changed ids of the following control agruments
 #' since their ids contain irregular pattern
 #'   
-#' @templateVar id classif.J48
+#' @templateVar id classif.LMT
 #' @template section_dictionary_learner
 #'
 #' @references
-#' Quinlan R (1993).
-#' C4.5: Programs for Machine Learning
-#' \url{http://www.rulequest.com/see5-unix.html}
+#'  Landwehr N, Hall M, Frank E (2005).
+#' Logistic Model Trees
+#' \url{https://link.springer.com/content/pdf/10.1007/s10994-005-0466-3.pdf}
 #'
 #' @export
-LearnerClassifJ48 = R6Class("LearnerClassifJ48",
+LearnerClassifLMT = R6Class("LearnerClassifLMT",
   inherit = LearnerClassif,
   public = list(
     #' @description
@@ -40,44 +40,33 @@ LearnerClassifJ48 = R6Class("LearnerClassifJ48",
         params = list(
           ParamUty$new(id = "subset", tags = c("train", "pars")),
           ParamUty$new(id = "na.action", tags = c("train", "pars")),
-          ParamLgl$new(id = "U", default = FALSE, tags = c("train", "control")),
-          ParamLgl$new(id = "O", default = FALSE, tags = c("train", "control")),
-          ParamDbl$new(id = "C", default = 0.25, lower = .Machine$double.eps,
-            upper = 1 - .Machine$double.eps, tags = c("train", "control")),
-          ParamInt$new(id = "M", default = 2L, lower = 1L, tags = c("train", "control")),
-          ParamLgl$new(id = "R", default = FALSE, tags = c("train", "control")),
-          ParamInt$new(id = "N", default = 3L, lower = 2L, tags = c("train", "control")),
           ParamLgl$new(id = "B", default = FALSE, tags = c("train", "control")),
-          ParamLgl$new(id = "S", default = FALSE, tags = c("train", "control")),
-          ParamLgl$new(id = "L", default = FALSE, tags = c("train", "control")),
+          ParamLgl$new(id = "R", default = FALSE, tags = c("train", "control")),
+          ParamLgl$new(id = "C", default = FALSE, tags = c("train", "control")),
+          ParamLgl$new(id = "P", default = FALSE, tags = c("train", "control")),
+          ParamInt$new(id = "I", lower = 1L, tags = c("train", "control")),
+          ParamInt$new(id = "M", default = 15L, lower = 1L, tags = c("train", "control")),
+          ParamDbl$new(id = "W", default = 0, lower = 0, upper = 1, tags = c("train", "control")),
           ParamLgl$new(id = "A", default = FALSE, tags = c("train", "control")),
-          ParamLgl$new(id = "J", default = FALSE, tags = c("train", "control")),
-          ParamInt$new(id = "Q", default = 1L, lower = 1L, tags = c("train", "control")),
-          ParamLgl$new(id = "doNotMakeSplitPointActualValue", default = FALSE,
-            tags = c("train", "control")),
+          ParamLgl$new(id = "doNotMakeSplitPointActualValue", default = FALSE, tags = c("train", "control")),
           ParamLgl$new(id = "output_debug_info", default = FALSE, tags = c("train", "control")),
-          ParamLgl$new(id = "do_not_check_capabilities", default = FALSE,
-            tags = c("train", "control")),
-          ParamInt$new(id = "num_decimal_places", default = 2L, lower = 1L,
-            tags = c("train", "control")),
+          ParamLgl$new(id = "do_not_check_capabilities", default = FALSE, tags = c("train", "control")),
+          ParamInt$new(id = "num_decimal_places", default = 2L, lower = 1L, tags = c("train", "control")),
           ParamInt$new(id = "batch_size", default = 100L, lower = 1L, tags = c("train", "control")),
           ParamUty$new(id = "options", default = NULL, tags = c("train", "pars"))
         )
       )
-      ps$add_dep("C", "U", CondEqual$new(FALSE))
-      ps$add_dep("C", "R", CondEqual$new(FALSE))
-      ps$add_dep("R", "U", CondEqual$new(FALSE))
-      ps$add_dep("N", "U", CondEqual$new(FALSE))
-      ps$add_dep("N", "R", CondEqual$new(TRUE))
-
+      ps$add_dep("I", "C", CondEqual$new(FALSE))
+      
+      
       super$initialize(
-        id = "classif.J48",
+        id = "classif.LMT",
         packages = "RWeka",
         feature_types = c("numeric", "factor", "ordered"),
         predict_types = c("response", "prob"),
         param_set = ps,
-        properties = c("twoclass", "multiclass", "missings"),
-        man = "mlr3learners.rweka::mlr_learners_classif.J48"
+        properties = c("twoclass", "multiclass"),
+        man = "mlr3learners.rweka::mlr_learners_classif.LMT"
       )
     }
   ),
@@ -93,7 +82,7 @@ LearnerClassifJ48 = R6Class("LearnerClassifJ48",
       pars = self$param_set$get_values(tags = "pars")
       f = task$formula()
       data = task$data()
-      mlr3misc::invoke(RWeka::J48, formula = f, data = data, control = ctrl, .args = pars)
+      mlr3misc::invoke(RWeka::LMT, formula = f, data = data, control = ctrl, .args = pars)
     },
 
     .predict = function(task) {

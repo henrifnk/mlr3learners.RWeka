@@ -8,7 +8,7 @@
 A \link[mlr3:LearnerClassif]{mlr3::LearnerClassif} implementing classification J48 from package \CRANpkg{RWeka}.
 Calls \code{\link[RWeka:J48]{RWeka::J48()}}.
 
-This Learner contains changed ids of the following control-agruments for,
+This learner contains changed ids of the following control agruments
 since their ids contain irregular pattern:
 \itemize{
 \item mlr3learner: output_debug_info RWeka: output-debug-info
