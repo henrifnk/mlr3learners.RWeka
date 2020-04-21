@@ -6,12 +6,21 @@
 #' A [mlr3::LearnerRegr] implementing classification JRip from package \CRANpkg{RWeka}.
 #' Calls [RWeka::M5Rules()].
 #'
-#' This learner contains changed ids of the following control agruments
-#' since their ids contain irregular pattern:
-#' * mlr3learner: output_debug_info RWeka: output-debug-info
-#' * mlr3learner: do_not_check_capabilities RWeka: do-not-check-capabilities
-#' * mlr3learner: num_decimal_places RWeka: num-decimal-places
-#' * mlr3learner: batch_size RWeka: batch-size
+#' @section Custom mlr3 defaults:
+#' - `output_debug_info`:
+#'   - original id: output-debug-info
+#'
+#' - `do_not_check_capabilities`:
+#'   - actual id: do-not-check-capabilities
+#'
+#' - `num_decimal_places`:
+#'   - actual id: num-decimal-places
+#' 
+#' - `batch_size`:
+#'   - actual id: batch-size
+#'
+#' - Reason for change: This learner contains changed ids of the following control agruments
+#' since their ids contain irregular pattern
 #'
 #' @templateVar id regr.M5Rules
 #' @template section_dictionary_learner

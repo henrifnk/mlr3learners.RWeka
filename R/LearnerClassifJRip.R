@@ -15,7 +15,8 @@
 #'
 #' - `num_decimal_places`:
 #'   - actual id: num-decimal-places
-#' - `batch_size`
+#'
+#'  - `batch_size`:
 #'   - actual id: batch-size
 #'
 #' - Reason for change: This learner contains changed ids of the following control agruments
