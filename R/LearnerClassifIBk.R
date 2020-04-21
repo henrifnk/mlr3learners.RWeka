@@ -7,12 +7,12 @@
 #' Calls [RWeka::IBk()].
 #'
 #' @section Custom mlr3 defaults:
-#' - `output_debug_info`:  
+#' - `output_debug_info`:
 #'   - original id: output-debug-info
-#' 
+#'
 #' - `do_not_check_capabilities`:
 #'   - actual id: do-not-check-capabilities
-#' 
+#'
 #' - `num_decimal_places`:
 #'   - actual id: num-decimal-places
 #' - `batch_size`
@@ -20,7 +20,7 @@
 #'
 #' - Reason for change: This learner contains changed ids of the following control agruments
 #' since their ids contain irregular pattern
-#'   
+#'
 #' @templateVar id classif.IBk
 #' @template section_dictionary_learner
 #'
@@ -46,7 +46,8 @@ LearnerClassifIBk = R6Class("LearnerClassifIBk",
           ParamLgl$new(id = "E", default = FALSE, tags = c("train", "control")),
           ParamInt$new(id = "W", default = 0L, lower = 0L, tags = c("train", "control")),
           ParamLgl$new(id = "X", default = FALSE, tags = c("train", "control")),
-          ParamUty$new(id = "A", default = "weka.core.neighboursearch.LinearNNSearch", tags = c("train", "control")),
+          ParamUty$new(id = "A", default = "weka.core.neighboursearch.LinearNNSearch",
+            tags = c("train", "control")),
           ParamLgl$new(id = "output_debug_info", default = FALSE, tags = c("train", "control")),
           ParamLgl$new(id = "do_not_check_capabilities", default = FALSE,
             tags = c("train", "control")),

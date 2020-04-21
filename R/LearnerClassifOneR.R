@@ -7,12 +7,12 @@
 #' Calls [RWeka::OneR()].
 #'
 #' @section Custom mlr3 defaults:
-#' - `output_debug_info`:  
+#' - `output_debug_info`:
 #'   - original id: output-debug-info
-#' 
+#'
 #' - `do_not_check_capabilities`:
 #'   - actual id: do-not-check-capabilities
-#' 
+#'
 #' - `num_decimal_places`:
 #'   - actual id: num-decimal-places
 #' - `batch_size`
@@ -20,7 +20,7 @@
 #'
 #' - Reason for change: This learner contains changed ids of the following control agruments
 #' since their ids contain irregular pattern
-#'   
+#'
 #' @templateVar id classif.OneR
 #' @template section_dictionary_learner
 #'
@@ -42,8 +42,10 @@ LearnerClassifOneR = R6Class("LearnerClassifOneR",
           ParamUty$new(id = "na.action", tags = c("train", "pars")),
           ParamInt$new(id = "B", default = 6L, lower = 1L, tags = c("train", "control")),
           ParamLgl$new(id = "output_debug_info", default = FALSE, tags = c("train", "control")),
-          ParamLgl$new(id = "do_not_check_capabilities", default = FALSE, tags = c("train", "control")),
-          ParamInt$new(id = "num_decimal_places", default = 2L, lower = 1L, tags = c("train", "control")),
+          ParamLgl$new(id = "do_not_check_capabilities", default = FALSE,
+            tags = c("train", "control")),
+          ParamInt$new(id = "num_decimal_places", default = 2L, lower = 1L,
+            tags = c("train", "control")),
           ParamInt$new(id = "batch_size", default = 100L, lower = 1L, tags = c("train", "control")),
           ParamUty$new(id = "options", default = NULL, tags = c("train", "pars"))
         )

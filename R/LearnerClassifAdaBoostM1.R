@@ -7,12 +7,12 @@
 # Calls [RWeka::AdaBoostM1()].
 #'
 #' @section Custom mlr3 defaults:
-#' - `output_debug_info`:  
+#' - `output_debug_info`:
 #'   - original id: output-debug-info
-#' 
+#'
 #' - `do_not_check_capabilities`:
 #'   - actual id: do-not-check-capabilities
-#' 
+#'
 #' - `num_decimal_places`:
 #'   - actual id: num-decimal-places
 #' - `batch_size`
@@ -20,7 +20,7 @@
 #'
 #' - Reason for change: This learner contains changed ids of the following control agruments
 #' since their ids contain irregular pattern
-#'   
+#'
 #' @templateVar id classif.AdaBoostM1
 #' @template section_dictionary_learner
 #'
@@ -40,20 +40,23 @@ LearnerClassifAdaBoostM1 = R6Class("LearnerClassifAdaBoostM1",
         params = list(
           ParamUty$new(id = "subset", tags = c("train", "pars")),
           ParamUty$new(id = "na.action", tags = c("train", "pars")),
-          ParamInt$new(id = "P", default = 100L, lower = 90L, upper = 100L, tags = c("train", "control")),
+          ParamInt$new(id = "P", default = 100L, lower = 90L, upper = 100L,
+            tags = c("train", "control")),
           ParamLgl$new(id = "Q", default = FALSE, tags = c("train", "control")),
           ParamInt$new(id = "S", default = 1L, lower = 1L, tags = c("train", "control")),
           ParamInt$new(id = "I", default = 10L, lower = 1L, tags = c("train", "control")),
-          ParamUty$new(id = "W", default = "weka.classifiers.trees.DecisionStump", tags = c("train", "control")),
+          ParamUty$new(id = "W", default = "weka.classifiers.trees.DecisionStump",
+            tags = c("train", "control")),
           ParamLgl$new(id = "output_debug_info", default = FALSE, tags = c("train", "control")),
-          ParamLgl$new(id = "do_not_check_capabilities", default = FALSE, tags = c("train", "control")),
+          ParamLgl$new(id = "do_not_check_capabilities", default = FALSE,
+            tags = c("train", "control")),
           ParamInt$new(id = "num_decimal_places", default = 2L, lower = 1L,
             tags = c("train", "control")),
           ParamInt$new(id = "batch_size", default = 100L, lower = 1L, tags = c("train", "control")),
           ParamUty$new(id = "options", default = NULL, tags = c("train", "pars"))
         )
       )
-      
+
       super$initialize(
         id = "classif.AdaBoostM1",
         packages = "RWeka",

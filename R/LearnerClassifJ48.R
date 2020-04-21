@@ -7,12 +7,12 @@
 #' Calls [RWeka::J48()].
 #'
 #' @section Custom mlr3 defaults:
-#' - `output_debug_info`:  
+#' - `output_debug_info`:
 #'   - original id: output-debug-info
-#' 
+#'
 #' - `do_not_check_capabilities`:
 #'   - actual id: do-not-check-capabilities
-#' 
+#'
 #' - `num_decimal_places`:
 #'   - actual id: num-decimal-places
 #' - `batch_size`
@@ -20,7 +20,7 @@
 #'
 #' - Reason for change: This learner contains changed ids of the following control agruments
 #' since their ids contain irregular pattern
-#'   
+#'
 #' @templateVar id classif.J48
 #' @template section_dictionary_learner
 #'

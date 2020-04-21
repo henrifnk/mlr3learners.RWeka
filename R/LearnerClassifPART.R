@@ -7,12 +7,12 @@
 #' Calls [RWeka::PART()].
 #'
 #' @section Custom mlr3 defaults:
-#' - `output_debug_info`:  
+#' - `output_debug_info`:
 #'   - original id: output-debug-info
-#' 
+#'
 #' - `do_not_check_capabilities`:
 #'   - actual id: do-not-check-capabilities
-#' 
+#'
 #' - `num_decimal_places`:
 #'   - actual id: num-decimal-places
 #' - `batch_size`
@@ -20,7 +20,7 @@
 #'
 #' - Reason for change: This learner contains changed ids of the following control agruments
 #' since their ids contain irregular pattern
-#'   
+#'
 #' @templateVar id classif.PART
 #' @template section_dictionary_learner
 #'
@@ -40,7 +40,8 @@ LearnerClassifPART = R6Class("LearnerClassifPART",
         params = list(
           ParamUty$new(id = "subset", tags = c("train", "pars")),
           ParamUty$new(id = "na.action", tags = c("train", "pars")),
-          ParamDbl$new(id = "C", default = 0.25, lower = .Machine$double.eps, upper = 1 - .Machine$double.eps, tags = c("train", "control")),
+          ParamDbl$new(id = "C", default = 0.25, lower = .Machine$double.eps,
+            upper = 1 - .Machine$double.eps, tags = c("train", "control")),
           ParamInt$new(id = "M", default = 2L, lower = 1L, tags = c("train", "control")),
           ParamLgl$new(id = "R", default = FALSE, tags = c("train", "control")),
           ParamInt$new(id = "N", default = 3L, lower = 1L, tags = c("train", "control")),
@@ -48,11 +49,15 @@ LearnerClassifPART = R6Class("LearnerClassifPART",
           ParamLgl$new(id = "U", default = FALSE, tags = c("train", "control")),
           ParamLgl$new(id = "J", default = FALSE, tags = c("train", "control")),
           ParamInt$new(id = "Q", default = 1L, lower = 1L, tags = c("train", "control")),
-          ParamLgl$new(id = "doNotMakeSplitPointActualValue", default = FALSE, tags = c("train", "control")),
+          ParamLgl$new(id = "doNotMakeSplitPointActualValue", default = FALSE,
+            tags = c("train", "control")),
           ParamLgl$new(id = "output_debug_info", default = FALSE, tags = c("train", "control")),
-          ParamLgl$new(id = "do_not_check_capabilities", default = FALSE, tags = c("train", "control")),
-          ParamInt$new(id = "num_decimal_places", default = 2L, lower = 1L, tags = c("train", "control")),
-          ParamInt$new(id = "batch_size", default = 100L, lower = 1L, tags = c("train", "control")),
+          ParamLgl$new(id = "do_not_check_capabilities", default = FALSE,
+            tags = c("train", "control")),
+          ParamInt$new(id = "num_decimal_places", default = 2L, lower = 1L,
+            tags = c("train", "control")),
+          ParamInt$new(id = "batch_size", default = 100L, lower = 1L,
+            tags = c("train", "control")),
           ParamUty$new(id = "options", default = NULL, tags = c("train", "pars"))
         )
       )
