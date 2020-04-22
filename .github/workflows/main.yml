@@ -36,8 +36,9 @@ jobs:
       CCACHE_SLOPPINESS: include_file_ctime
       # make sure to run `tic::use_ghactions_deploy()` to set up deployment
       id_rsa: ${{ secrets.id_rsa }}
+      TIC_DEPLOY_KEY: ${{ secrets.TIC_DEPLOY_KEY }}
       # prevent rgl issues because no X11 display is available
-      RGL_USE_NULL: true      
+      RGL_USE_NULL: true
       # macOS >= 10.15.4 linking
       SDKROOT: /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk
 
@@ -130,7 +131,7 @@ jobs:
         if: runner.os == 'Linux'
         run: |
           sudo R CMD javareconf
-          
+
       # for some strange Windows reason this step and the next one need to be decoupled
       - name: "[Stage] Prepare"
         run: |
@@ -141,8 +142,8 @@ jobs:
       # install rJava before tick does so
       - name: "[macOS] rJava"
         if: runner.os == 'macOS'
-        run: |	     
-          R CMD javareconf	      
+        run: |
+          R CMD javareconf
           Rscript -e "install.packages('rJava', type = 'source')"
 
       - name: "[Stage] Install"
@@ -169,7 +170,7 @@ jobs:
         with:
           name: ${{ runner.os }}-r${{ matrix.config.r }}-results
           path: check
-      
+
       - name: "[Stage] Before Deploy"
         if: matrix.config.r != 'devel'
         run: |
