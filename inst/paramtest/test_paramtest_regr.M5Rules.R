@@ -10,12 +10,8 @@ test_that("regr.M5Rules", {
   )
 
   ParamTest = run_paramtest(learner, fun, exclude)
-  expect_true(ParamTest, info = paste0(
-    "
-Missing parameters:
-",
-    paste0("- '", ParamTest$missing, "'", collapse = "
-")))
+  expect_true(ParamTest, info = paste0("\nMissing parameters:\n",
+                                       paste0("- '", ParamTest$missing, "'", collapse = "\n")))
 })
 
 test_that("Weka_control M5 Rules", {
@@ -26,10 +22,6 @@ test_that("Weka_control M5 Rules", {
   )
 
   ParamTest = run_paramtest(learner, fun, exclude)
-  expect_true(ParamTest, info = paste0(
-    "
-Missing parameters:
-",
-    paste0("- '", ParamTest$missing, "'", collapse = "
-")))
+  expect_true(ParamTest, info = paste0("\nMissing parameters:\n",
+                                       paste0("- '", ParamTest$missing, "'", collapse = "\n")))
 })

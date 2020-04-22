@@ -11,15 +11,15 @@
 #'   - original id: output-debug-info
 #'
 #' - `do_not_check_capabilities`:
-#'   - actual id: do-not-check-capabilities
+#'   - original id: do-not-check-capabilities
 #'
 #' - `num_decimal_places`:
-#'   - actual id: num-decimal-places
+#'   - original id: num-decimal-places
 #'
-#'  - `batch_size`:
-#'   - actual id: batch-size
+#' - `batch_size`:
+#'   - original id: batch-size
 #'
-#' - Reason for change: This learner contains changed ids of the following control agruments
+#' - Reason for change: This learner contains changed ids of the following control arguments
 #' since their ids contain irregular pattern
 #'
 #' @templateVar id classif.J48
@@ -43,7 +43,8 @@ LearnerClassifJ48 = R6Class("LearnerClassifJ48",
           ParamUty$new(id = "na.action", tags = c("train", "pars")),
           ParamLgl$new(id = "U", default = FALSE, tags = c("train", "control")),
           ParamLgl$new(id = "O", default = FALSE, tags = c("train", "control")),
-          ParamDbl$new(id = "C", default = 0.25, lower = .Machine$double.eps,
+          ParamDbl$new(
+            id = "C", default = 0.25, lower = .Machine$double.eps,
             upper = 1 - .Machine$double.eps, tags = c("train", "control")),
           ParamInt$new(id = "M", default = 2L, lower = 1L, tags = c("train", "control")),
           ParamLgl$new(id = "R", default = FALSE, tags = c("train", "control")),
@@ -54,12 +55,15 @@ LearnerClassifJ48 = R6Class("LearnerClassifJ48",
           ParamLgl$new(id = "A", default = FALSE, tags = c("train", "control")),
           ParamLgl$new(id = "J", default = FALSE, tags = c("train", "control")),
           ParamInt$new(id = "Q", default = 1L, lower = 1L, tags = c("train", "control")),
-          ParamLgl$new(id = "doNotMakeSplitPointActualValue", default = FALSE,
+          ParamLgl$new(
+            id = "doNotMakeSplitPointActualValue", default = FALSE,
             tags = c("train", "control")),
           ParamLgl$new(id = "output_debug_info", default = FALSE, tags = c("train", "control")),
-          ParamLgl$new(id = "do_not_check_capabilities", default = FALSE,
+          ParamLgl$new(
+            id = "do_not_check_capabilities", default = FALSE,
             tags = c("train", "control")),
-          ParamInt$new(id = "num_decimal_places", default = 2L, lower = 1L,
+          ParamInt$new(
+            id = "num_decimal_places", default = 2L, lower = 1L,
             tags = c("train", "control")),
           ParamInt$new(id = "batch_size", default = 100L, lower = 1L, tags = c("train", "control")),
           ParamUty$new(id = "options", default = NULL, tags = c("train", "pars"))

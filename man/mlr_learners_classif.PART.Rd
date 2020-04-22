@@ -17,17 +17,17 @@ Calls \code{\link[RWeka:PART]{RWeka::PART()}}.
 }
 \item \code{do_not_check_capabilities}:
 \itemize{
-\item actual id: do-not-check-capabilities
+\item original id: do-not-check-capabilities
 }
 \item \code{num_decimal_places}:
 \itemize{
-\item actual id: num-decimal-places
+\item original id: num-decimal-places
 }
-\item \code{batch_size}
+\item \code{batch_size}:
 \itemize{
-\item actual id: batch-size
+\item original id: batch-size
 }
-\item Reason for change: This learner contains changed ids of the following control agruments
+\item Reason for change: This learner contains changed ids of the following control arguments
 since their ids contain irregular pattern
 }
 }
@@ -43,7 +43,6 @@ lrn("classif.PART")
 \references{
 Frank E, Witten I (1998).
 Generating Accurate Rule Sets Without Global Optimization
-\url{https://www.researchgate.net/publication/2779742_Generating_Accurate_Rule_Sets_Without_Global_Optimization}
 }
 \section{Super classes}{
 \code{\link[mlr3:Learner]{mlr3::Learner}} -> \code{\link[mlr3:LearnerClassif]{mlr3::LearnerClassif}} -> \code{LearnerClassifPART}

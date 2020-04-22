@@ -3,20 +3,35 @@
 \name{mlr_learners_regr.M5Rules}
 \alias{mlr_learners_regr.M5Rules}
 \alias{LearnerRegrM5Rules}
-\title{Regrssion M5Rules Learner}
+\title{Regression M5Rules Learner}
 \description{
 A \link[mlr3:LearnerRegr]{mlr3::LearnerRegr} implementing classification JRip from package \CRANpkg{RWeka}.
 Calls \code{\link[RWeka:M5Rules]{RWeka::M5Rules()}}.
+}
+\section{Custom mlr3 defaults}{
 
-This learner contains changed ids of the following control agruments
-since their ids contain irregular pattern:
 \itemize{
-\item mlr3learner: output_debug_info RWeka: output-debug-info
-\item mlr3learner: do_not_check_capabilities RWeka: do-not-check-capabilities
-\item mlr3learner: num_decimal_places RWeka: num-decimal-places
-\item mlr3learner: batch_size RWeka: batch-size
+\item \code{output_debug_info}:
+\itemize{
+\item original id: output-debug-info
+}
+\item \code{do_not_check_capabilities}:
+\itemize{
+\item original id: do-not-check-capabilities
+}
+\item \code{num_decimal_places}:
+\itemize{
+\item original id: num-decimal-places
+}
+\item \code{batch_size}:
+\itemize{
+\item original id: batch-size
+}
+\item Reason for change: This learner contains changed ids of the following control arguments
+since their ids contain irregular pattern
 }
 }
+
 \section{Dictionary}{
 
 This \link{Learner} can be instantiated via the \link[mlr3misc:Dictionary]{dictionary}

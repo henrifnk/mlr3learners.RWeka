@@ -5,7 +5,7 @@
 \alias{LearnerClassifOneR}
 \title{Classification OneR Learner}
 \description{
-A \link[mlr3:LearnerClassif]{mlr3::LearnerClassif} implementing classification OneR from package \CRANpkg{RWeka}.
+A \link[mlr3:LearnerClassif]{mlr3::LearnerClassif} implementing classification PART from package \CRANpkg{RWeka}.
 Calls \code{\link[RWeka:OneR]{RWeka::OneR()}}.
 }
 \section{Custom mlr3 defaults}{
@@ -17,17 +17,17 @@ Calls \code{\link[RWeka:OneR]{RWeka::OneR()}}.
 }
 \item \code{do_not_check_capabilities}:
 \itemize{
-\item actual id: do-not-check-capabilities
+\item original id: do-not-check-capabilities
 }
 \item \code{num_decimal_places}:
 \itemize{
-\item actual id: num-decimal-places
+\item original id: num-decimal-places
 }
-\item \code{batch_size}
+\item \code{batch_size}:
 \itemize{
-\item actual id: batch-size
+\item original id: batch-size
 }
-\item Reason for change: This learner contains changed ids of the following control agruments
+\item Reason for change: This learner contains changed ids of the following control arguments
 since their ids contain irregular pattern
 }
 }

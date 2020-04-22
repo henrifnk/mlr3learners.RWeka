@@ -9,6 +9,7 @@
 register_mlr3 = function(libname, pkgname) {
 
   # get mlr_learners dictionary from the mlr3 namespace
+
   x = utils::getFromNamespace("mlr_learners", ns = "mlr3")
 
   # add the learner to the dictionary

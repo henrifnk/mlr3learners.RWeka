@@ -3,7 +3,7 @@
 #' @name mlr_learners_classif.OneR
 #'
 #' @description
-#' A [mlr3::LearnerClassif] implementing classification OneR from package \CRANpkg{RWeka}.
+#' A [mlr3::LearnerClassif] implementing classification PART from package \CRANpkg{RWeka}.
 #' Calls [RWeka::OneR()].
 #'
 #' @section Custom mlr3 defaults:
@@ -11,15 +11,15 @@
 #'   - original id: output-debug-info
 #'
 #' - `do_not_check_capabilities`:
-#'   - actual id: do-not-check-capabilities
+#'   - original id: do-not-check-capabilities
 #'
 #' - `num_decimal_places`:
-#'   - actual id: num-decimal-places
+#'   - original id: num-decimal-places
 #'
-#'  - `batch_size`:
-#'   - actual id: batch-size
+#' - `batch_size`:
+#'   - original id: batch-size
 #'
-#' - Reason for change: This learner contains changed ids of the following control agruments
+#' - Reason for change: This learner contains changed ids of the following control arguments
 #' since their ids contain irregular pattern
 #'
 #' @templateVar id classif.OneR
@@ -43,9 +43,11 @@ LearnerClassifOneR = R6Class("LearnerClassifOneR",
           ParamUty$new(id = "na.action", tags = c("train", "pars")),
           ParamInt$new(id = "B", default = 6L, lower = 1L, tags = c("train", "control")),
           ParamLgl$new(id = "output_debug_info", default = FALSE, tags = c("train", "control")),
-          ParamLgl$new(id = "do_not_check_capabilities", default = FALSE,
+          ParamLgl$new(
+            id = "do_not_check_capabilities", default = FALSE,
             tags = c("train", "control")),
-          ParamInt$new(id = "num_decimal_places", default = 2L, lower = 1L,
+          ParamInt$new(
+            id = "num_decimal_places", default = 2L, lower = 1L,
             tags = c("train", "control")),
           ParamInt$new(id = "batch_size", default = 100L, lower = 1L, tags = c("train", "control")),
           ParamUty$new(id = "options", default = NULL, tags = c("train", "pars"))

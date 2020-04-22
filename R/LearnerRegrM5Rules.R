@@ -1,4 +1,4 @@
-#' @title Regrssion M5Rules Learner
+#' @title Regression M5Rules Learner
 #'
 #' @name mlr_learners_regr.M5Rules
 #'
@@ -11,15 +11,15 @@
 #'   - original id: output-debug-info
 #'
 #' - `do_not_check_capabilities`:
-#'   - actual id: do-not-check-capabilities
+#'   - original id: do-not-check-capabilities
 #'
 #' - `num_decimal_places`:
-#'   - actual id: num-decimal-places
-#' 
-#' - `batch_size`:
-#'   - actual id: batch-size
+#'   - original id: num-decimal-places
 #'
-#' - Reason for change: This learner contains changed ids of the following control agruments
+#' - `batch_size`:
+#'   - original id: batch-size
+#'
+#' - Reason for change: This learner contains changed ids of the following control arguments
 #' since their ids contain irregular pattern
 #'
 #' @templateVar id regr.M5Rules
@@ -48,10 +48,10 @@ LearnerRegrM5Rules = R6Class("LearnerRegrM5Rules",
           ParamLgl$new(id = "R", default = FALSE, tags = c("train", "control")),
           ParamInt$new(id = "M", default = 4L, tags = c("train", "control")),
           ParamLgl$new(id = "output_debug_info", default = FALSE, tags = c("train", "control")),
-          ParamLgl$new(id = "do_not_check_capabilities", default = FALSE,
-            tags = c("train", "control")),
-          ParamInt$new(id = "num_decimal_places", default = 2L, lower = 1L,
-            tags = c("train", "control")),
+          ParamLgl$new(
+            id = "do_not_check_capabilities", default = FALSE, tags = c("train", "control")),
+          ParamInt$new(
+            id = "num_decimal_places", default = 2L, lower = 1L, tags = c("train", "control")),
           ParamInt$new(id = "batch_size", default = 100L, lower = 1L, tags = c("train", "control")),
           ParamUty$new(id = "options", default = NULL, tags = c("train", "pars"))
         )

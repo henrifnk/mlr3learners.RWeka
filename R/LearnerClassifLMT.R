@@ -11,22 +11,22 @@
 #'   - original id: output-debug-info
 #'
 #' - `do_not_check_capabilities`:
-#'   - actual id: do-not-check-capabilities
+#'   - original id: do-not-check-capabilities
 #'
 #' - `num_decimal_places`:
-#'   - actual id: num-decimal-places
+#'   - original id: num-decimal-places
 #'
-#'  - `batch_size`:
-#'   - actual id: batch-size
+#' - `batch_size`:
+#'   - original id: batch-size
 #'
-#' - Reason for change: This learner contains changed ids of the following control agruments
+#' - Reason for change: This learner contains changed ids of the following control arguments
 #' since their ids contain irregular pattern
 #'
 #' @templateVar id classif.LMT
 #' @template section_dictionary_learner
 #'
 #' @references
-#'  Landwehr N, Hall M, Frank E (2005).
+#' Landwehr N, Hall M, Frank E (2005).
 #' Logistic Model Trees
 #' \url{https://link.springer.com/content/pdf/10.1007/s10994-005-0466-3.pdf}
 #'
@@ -49,12 +49,15 @@ LearnerClassifLMT = R6Class("LearnerClassifLMT",
           ParamInt$new(id = "M", default = 15L, lower = 1L, tags = c("train", "control")),
           ParamDbl$new(id = "W", default = 0, lower = 0, upper = 1, tags = c("train", "control")),
           ParamLgl$new(id = "A", default = FALSE, tags = c("train", "control")),
-          ParamLgl$new(id = "doNotMakeSplitPointActualValue", default = FALSE,
+          ParamLgl$new(
+            id = "doNotMakeSplitPointActualValue", default = FALSE,
             tags = c("train", "control")),
           ParamLgl$new(id = "output_debug_info", default = FALSE, tags = c("train", "control")),
-          ParamLgl$new(id = "do_not_check_capabilities", default = FALSE,
+          ParamLgl$new(
+            id = "do_not_check_capabilities", default = FALSE,
             tags = c("train", "control")),
-          ParamInt$new(id = "num_decimal_places", default = 2L, lower = 1L,
+          ParamInt$new(
+            id = "num_decimal_places", default = 2L, lower = 1L,
             tags = c("train", "control")),
           ParamInt$new(id = "batch_size", default = 100L, lower = 1L, tags = c("train", "control")),
           ParamUty$new(id = "options", default = NULL, tags = c("train", "pars"))
