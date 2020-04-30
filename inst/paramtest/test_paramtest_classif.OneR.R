@@ -10,8 +10,9 @@ test_that("classif.OneR", {
   )
 
   ParamTest = run_paramtest(learner, fun, exclude)
-  expect_true(ParamTest, info = paste0("\nMissing parameters:\n",
-                                       paste0("- '", ParamTest$missing, "'", collapse = "\n")))
+  expect_true(ParamTest, info = paste0(
+    "\nMissing parameters:\n",
+    paste0("- '", ParamTest$missing, "'", collapse = "\n")))
 })
 
 test_that("Weka_control OneR", {
@@ -22,6 +23,22 @@ test_that("Weka_control OneR", {
   )
 
   ParamTest = run_paramtest(learner, fun, exclude)
-  expect_true(ParamTest, info = paste0("\nMissing parameters:\n",
-                                       paste0("- '", ParamTest$missing, "'", collapse = "\n")))
+  expect_true(ParamTest, info = paste0(
+    "\nMissing parameters:\n",
+    paste0("- '", ParamTest$missing, "'", collapse = "\n")))
+})
+
+test_that("predict classif.OneR", {
+  learner = lrn("classif.OneR")
+  fun = RWeka:::predict.Weka_classifier
+  exclude = c(
+    "object", # handled via mlr3
+    "newdata", # handled via mlr3
+    "type" # handled via mlr3
+  )
+  
+  ParamTest = run_paramtest(learner, fun, exclude)
+  expect_true(ParamTest, info = paste0(
+    "Missing parameters:",
+    paste0("- '", ParamTest$missing, "'", collapse = "‚")))
 })
