@@ -37,7 +37,7 @@ test_that("predict classif.J48", {
     "newdata", # handled via mlr3
     "type" # handled via mlr3
   )
-  
+
   ParamTest = run_paramtest(learner, fun, exclude)
   expect_true(ParamTest, info = paste0(
     "Missing parameters:",
