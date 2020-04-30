@@ -1,7 +1,7 @@
 Package: mlr3learners.rweka
 Title: AdaBoostM1, IBk ,JRip, J48, LMT, M5Rules, OneR and PART
     Learner for mlr3
-Version: 0.1.0.9000
+Version: 0.1.1
 Authors@R:
     person(given = "Henri",
            family = "Funk",
