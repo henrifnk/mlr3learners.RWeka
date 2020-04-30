@@ -8,7 +8,6 @@ test_that("classif.J48", {
     "data", # handled via mlr3
     "control" # handled to RWeka::Weka_Control
   )
-
   ParamTest = run_paramtest(learner, fun, exclude)
   expect_true(ParamTest, info = paste0(
     "\nMissing parameters:\n",
@@ -21,7 +20,6 @@ test_that("Weka_control J48", {
   exclude = c(
     character(0L)
   )
-
   ParamTest = run_paramtest(learner, fun, exclude)
   expect_true(ParamTest, info = paste0(
     "\nMissing parameters:\n",
@@ -37,7 +35,6 @@ test_that("predict classif.J48", {
     "newdata", # handled via mlr3
     "type" # handled via mlr3
   )
-
   ParamTest = run_paramtest(learner, fun, exclude)
   expect_true(ParamTest, info = paste0(
     "Missing parameters:",
