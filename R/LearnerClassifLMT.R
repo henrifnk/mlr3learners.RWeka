@@ -1,10 +1,10 @@
-#' @title Classification JRip Learner
+#' @title Classification Logistic Model Trees Learner
 #'
-#' @name mlr_learners_classif.JRip
+#' @name mlr_learners_classif.LMT
 #'
 #' @description
-#' A [mlr3::LearnerClassif] implementing classification JRip from package \CRANpkg{RWeka}.
-#' Calls [RWeka::JRip()].
+#' A [mlr3::LearnerClassif] implementing classification LMT from package \CRANpkg{RWeka}.
+# Calls [RWeka::LMT()].
 #'
 #' @section Custom mlr3 defaults:
 #' - `output_debug_info`:
@@ -22,17 +22,16 @@
 #' - Reason for change: This learner contains changed ids of the following control arguments
 #' since their ids contain irregular pattern
 #'
-#' @templateVar id classif.Jrip
+#' @templateVar id classif.LMT
 #' @template section_dictionary_learner
 #'
 #' @references
-#' Cohen W (1995).
-#' Fast effective rule induction
-#' In: Proceedings of the 12th International Conference on Machine Learning, pages 115–123.
-#' \url{http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.50.8204}
+#' Landwehr N, Hall M, Frank E (2005).
+#' Logistic Model Trees
+#' \url{https://link.springer.com/content/pdf/10.1007/s10994-005-0466-3.pdf}
 #'
 #' @export
-LearnerClassifJRip = R6Class("LearnerClassifJRip",
+LearnerClassifLMT = R6Class("LearnerClassifLMT",
   inherit = LearnerClassif,
   public = list(
     #' @description
@@ -42,13 +41,17 @@ LearnerClassifJRip = R6Class("LearnerClassifJRip",
         params = list(
           ParamUty$new(id = "subset", tags = c("train", "pars")),
           ParamUty$new(id = "na.action", tags = c("train", "pars")),
-          ParamInt$new(id = "F", default = 3L, lower = 2L, tags = c("train", "control")),
-          ParamDbl$new(id = "N", default = 2, lower = 0, tags = c("train", "control")),
-          ParamInt$new(id = "O", default = 2L, lower = 1L, tags = c("train", "control")),
-          ParamLgl$new(id = "D", default = FALSE, tags = c("train", "control")),
-          ParamInt$new(id = "S", default = 1L, lower = 1L, tags = c("train", "control")),
-          ParamLgl$new(id = "E", default = FALSE, tags = c("train", "control")),
+          ParamLgl$new(id = "B", default = FALSE, tags = c("train", "control")),
+          ParamLgl$new(id = "R", default = FALSE, tags = c("train", "control")),
+          ParamLgl$new(id = "C", default = FALSE, tags = c("train", "control")),
           ParamLgl$new(id = "P", default = FALSE, tags = c("train", "control")),
+          ParamInt$new(id = "I", lower = 1L, tags = c("train", "control")),
+          ParamInt$new(id = "M", default = 15L, lower = 1L, tags = c("train", "control")),
+          ParamDbl$new(id = "W", default = 0, lower = 0, upper = 1, tags = c("train", "control")),
+          ParamLgl$new(id = "A", default = FALSE, tags = c("train", "control")),
+          ParamLgl$new(
+            id = "doNotMakeSplitPointActualValue", default = FALSE,
+            tags = c("train", "control")),
           ParamLgl$new(id = "output_debug_info", default = FALSE, tags = c("train", "control")),
           ParamLgl$new(
             id = "do_not_check_capabilities", default = FALSE,
@@ -60,15 +63,15 @@ LearnerClassifJRip = R6Class("LearnerClassifJRip",
           ParamUty$new(id = "options", default = NULL, tags = c("train", "pars"))
         )
       )
-
+      ps$add_dep("I", "C", CondEqual$new(FALSE))
       super$initialize(
-        id = "classif.JRip",
+        id = "classif.LMT",
         packages = "RWeka",
         feature_types = c("numeric", "factor", "ordered"),
         predict_types = c("response", "prob"),
         param_set = ps,
         properties = c("twoclass", "multiclass"),
-        man = "mlr3learners.rweka::mlr_learners_classif.JRip"
+        man = "mlr3learners.rweka::mlr_learners_classif.LMT"
       )
     }
   ),
@@ -84,7 +87,7 @@ LearnerClassifJRip = R6Class("LearnerClassifJRip",
       pars = self$param_set$get_values(tags = "pars")
       f = task$formula()
       data = task$data()
-      mlr3misc::invoke(RWeka::JRip, formula = f, data = data, control = ctrl, .args = pars)
+      mlr3misc::invoke(RWeka::LMT, formula = f, data = data, control = ctrl, .args = pars)
     },
 
     .predict = function(task) {

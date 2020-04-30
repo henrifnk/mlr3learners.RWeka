@@ -1,4 +1,4 @@
-#' @title Regrssion M5Rules Learner
+#' @title Regression M5Rules Learner
 #'
 #' @name mlr_learners_regr.M5Rules
 #'
@@ -6,12 +6,21 @@
 #' A [mlr3::LearnerRegr] implementing classification JRip from package \CRANpkg{RWeka}.
 #' Calls [RWeka::M5Rules()].
 #'
-#' This learner contains changed ids of the following control agruments
-#' since their ids contain irregular pattern:
-#' * mlr3learner: output_debug_info RWeka: output-debug-info
-#' * mlr3learner: do_not_check_capabilities RWeka: do-not-check-capabilities
-#' * mlr3learner: num_decimal_places RWeka: num-decimal-places
-#' * mlr3learner: batch_size RWeka: batch-size
+#' @section Custom mlr3 defaults:
+#' - `output_debug_info`:
+#'   - original id: output-debug-info
+#'
+#' - `do_not_check_capabilities`:
+#'   - original id: do-not-check-capabilities
+#'
+#' - `num_decimal_places`:
+#'   - original id: num-decimal-places
+#'
+#' - `batch_size`:
+#'   - original id: batch-size
+#'
+#' - Reason for change: This learner contains changed ids of the following control arguments
+#' since their ids contain irregular pattern
 #'
 #' @templateVar id regr.M5Rules
 #' @template section_dictionary_learner
@@ -39,10 +48,10 @@ LearnerRegrM5Rules = R6Class("LearnerRegrM5Rules",
           ParamLgl$new(id = "R", default = FALSE, tags = c("train", "control")),
           ParamInt$new(id = "M", default = 4L, tags = c("train", "control")),
           ParamLgl$new(id = "output_debug_info", default = FALSE, tags = c("train", "control")),
-          ParamLgl$new(id = "do_not_check_capabilities", default = FALSE,
-            tags = c("train", "control")),
-          ParamInt$new(id = "num_decimal_places", default = 2L, lower = 1L,
-            tags = c("train", "control")),
+          ParamLgl$new(
+            id = "do_not_check_capabilities", default = FALSE, tags = c("train", "control")),
+          ParamInt$new(
+            id = "num_decimal_places", default = 2L, lower = 1L, tags = c("train", "control")),
           ParamInt$new(id = "batch_size", default = 100L, lower = 1L, tags = c("train", "control")),
           ParamUty$new(id = "options", default = NULL, tags = c("train", "pars"))
         )

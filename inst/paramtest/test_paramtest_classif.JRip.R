@@ -10,11 +10,8 @@ test_that("classif.JRip", {
   )
   ParamTest = run_paramtest(learner, fun, exclude)
   expect_true(ParamTest, info = paste0(
-    "
-Missing parameters:
-",
-    paste0("- '", ParamTest$missing, "'", collapse = "
-")))
+    "\nMissing parameters:\n",
+    paste0("- '", ParamTest$missing, "'", collapse = "\n")))
 })
 
 test_that("Weka_control JRip", {
@@ -23,12 +20,22 @@ test_that("Weka_control JRip", {
   exclude = c(
     character(0L)
   )
-
   ParamTest = run_paramtest(learner, fun, exclude)
   expect_true(ParamTest, info = paste0(
-    "
-Missing parameters:
-",
-    paste0("- '", ParamTest$missing, "'", collapse = "
-")))
+    "\nMissing parameters:\n",
+    paste0("- '", ParamTest$missing, "'", collapse = "\n")))
+})
+
+test_that("predict classif.JRip", {
+  learner = lrn("classif.JRip")
+  fun = RWeka:::predict.Weka_classifier
+  exclude = c(
+    "object", # handled via mlr3
+    "newdata", # handled via mlr3
+    "type" # handled via mlr3
+  )
+  ParamTest = run_paramtest(learner, fun, exclude)
+  expect_true(ParamTest, info = paste0(
+    "Missing parameters:",
+    paste0("- '", ParamTest$missing, "'", collapse = "‚")))
 })

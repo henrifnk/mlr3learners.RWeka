@@ -1,10 +1,10 @@
-#' @title Classification JRip Learner
+#' @title Classification IBk Learner
 #'
-#' @name mlr_learners_classif.JRip
+#' @name mlr_learners_classif.IBk
 #'
 #' @description
-#' A [mlr3::LearnerClassif] implementing classification JRip from package \CRANpkg{RWeka}.
-#' Calls [RWeka::JRip()].
+#' A [mlr3::LearnerClassif] implementing classification IBk from package \CRANpkg{RWeka}.
+#' Calls [RWeka::IBk()].
 #'
 #' @section Custom mlr3 defaults:
 #' - `output_debug_info`:
@@ -22,17 +22,16 @@
 #' - Reason for change: This learner contains changed ids of the following control arguments
 #' since their ids contain irregular pattern
 #'
-#' @templateVar id classif.Jrip
+#' @templateVar id classif.IBk
 #' @template section_dictionary_learner
 #'
 #' @references
-#' Cohen W (1995).
-#' Fast effective rule induction
-#' In: Proceedings of the 12th International Conference on Machine Learning, pages 115–123.
-#' \url{http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.50.8204}
+#' Aha D, Kibbler D, Alber M (1991).
+#' Instance-based learning algorithms
+#' \url{https://link.springer.com/content/pdf/10.1007/BF00153759.pdf}
 #'
 #' @export
-LearnerClassifJRip = R6Class("LearnerClassifJRip",
+LearnerClassifIBk = R6Class("LearnerClassifIBk",
   inherit = LearnerClassif,
   public = list(
     #' @description
@@ -42,13 +41,15 @@ LearnerClassifJRip = R6Class("LearnerClassifJRip",
         params = list(
           ParamUty$new(id = "subset", tags = c("train", "pars")),
           ParamUty$new(id = "na.action", tags = c("train", "pars")),
-          ParamInt$new(id = "F", default = 3L, lower = 2L, tags = c("train", "control")),
-          ParamDbl$new(id = "N", default = 2, lower = 0, tags = c("train", "control")),
-          ParamInt$new(id = "O", default = 2L, lower = 1L, tags = c("train", "control")),
-          ParamLgl$new(id = "D", default = FALSE, tags = c("train", "control")),
-          ParamInt$new(id = "S", default = 1L, lower = 1L, tags = c("train", "control")),
+          ParamLgl$new(id = "I", default = FALSE, tags = c("train", "control")),
+          ParamLgl$new(id = "F", default = FALSE, tags = c("train", "control")),
+          ParamInt$new(id = "K", default = 1L, lower = 1L, tags = c("train", "control")),
           ParamLgl$new(id = "E", default = FALSE, tags = c("train", "control")),
-          ParamLgl$new(id = "P", default = FALSE, tags = c("train", "control")),
+          ParamInt$new(id = "W", default = 0L, lower = 0L, tags = c("train", "control")),
+          ParamLgl$new(id = "X", default = FALSE, tags = c("train", "control")),
+          ParamUty$new(
+            id = "A", default = "weka.core.neighboursearch.LinearNNSearch",
+            tags = c("train", "control")),
           ParamLgl$new(id = "output_debug_info", default = FALSE, tags = c("train", "control")),
           ParamLgl$new(
             id = "do_not_check_capabilities", default = FALSE,
@@ -62,13 +63,13 @@ LearnerClassifJRip = R6Class("LearnerClassifJRip",
       )
 
       super$initialize(
-        id = "classif.JRip",
+        id = "classif.IBk",
         packages = "RWeka",
         feature_types = c("numeric", "factor", "ordered"),
         predict_types = c("response", "prob"),
         param_set = ps,
         properties = c("twoclass", "multiclass"),
-        man = "mlr3learners.rweka::mlr_learners_classif.JRip"
+        man = "mlr3learners.rweka::mlr_learners_classif.IBk"
       )
     }
   ),
@@ -84,7 +85,7 @@ LearnerClassifJRip = R6Class("LearnerClassifJRip",
       pars = self$param_set$get_values(tags = "pars")
       f = task$formula()
       data = task$data()
-      mlr3misc::invoke(RWeka::JRip, formula = f, data = data, control = ctrl, .args = pars)
+      mlr3misc::invoke(RWeka::IBk, formula = f, data = data, control = ctrl, .args = pars)
     },
 
     .predict = function(task) {

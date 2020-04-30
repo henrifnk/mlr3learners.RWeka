@@ -1,8 +1,8 @@
 library(mlr3learners.rweka)
 
-test_that("regr.M5Rules", {
-  learner = lrn("regr.M5Rules")
-  fun = RWeka::M5Rules
+test_that("classif.LMT", {
+  learner = lrn("classif.LMT")
+  fun = RWeka::LMT
   exclude = c(
     "formula", # handled via mlr3
     "data", # handled via mlr3
@@ -14,8 +14,8 @@ test_that("regr.M5Rules", {
     paste0("- '", ParamTest$missing, "'", collapse = "\n")))
 })
 
-test_that("Weka_control M5 Rules", {
-  learner = lrn("regr.M5Rules")
+test_that("Weka_control LMT", {
+  learner = lrn("classif.LMT")
   fun = RWeka::Weka_control
   exclude = c(
     character(0L)
@@ -26,8 +26,9 @@ test_that("Weka_control M5 Rules", {
     paste0("- '", ParamTest$missing, "'", collapse = "\n")))
 })
 
-test_that("predict regr.M5Rules", {
-  learner = lrn("regr.M5Rules")
+
+test_that("predict classif.LMT", {
+  learner = lrn("classif.LMT")
   fun = RWeka:::predict.Weka_classifier
   exclude = c(
     "object", # handled via mlr3
